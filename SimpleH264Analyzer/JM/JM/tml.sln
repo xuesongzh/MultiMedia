@@ -1,0 +1,37 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ldecod", "ldecod.vcproj", "{FC2874B4-5952-4A3C-8C19-EED7569EF2CA}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lencod", "lencod.vcproj", "{72DAD792-E787-4D8D-BC80-4DDEAE91F4FF}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "rtpdump", "rtpdump\rtpdump.vcproj", "{15482C40-FB53-41B0-B2A8-F2452FD91D39}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{FC2874B4-5952-4A3C-8C19-EED7569EF2CA}.Debug.ActiveCfg = Debug|Win32
+		{FC2874B4-5952-4A3C-8C19-EED7569EF2CA}.Debug.Build.0 = Debug|Win32
+		{FC2874B4-5952-4A3C-8C19-EED7569EF2CA}.Release.ActiveCfg = Release|Win32
+		{FC2874B4-5952-4A3C-8C19-EED7569EF2CA}.Release.Build.0 = Release|Win32
+		{72DAD792-E787-4D8D-BC80-4DDEAE91F4FF}.Debug.ActiveCfg = Debug|Win32
+		{72DAD792-E787-4D8D-BC80-4DDEAE91F4FF}.Debug.Build.0 = Debug|Win32
+		{72DAD792-E787-4D8D-BC80-4DDEAE91F4FF}.Release.ActiveCfg = Release|Win32
+		{72DAD792-E787-4D8D-BC80-4DDEAE91F4FF}.Release.Build.0 = Release|Win32
+		{15482C40-FB53-41B0-B2A8-F2452FD91D39}.Debug.ActiveCfg = Debug|Win32
+		{15482C40-FB53-41B0-B2A8-F2452FD91D39}.Debug.Build.0 = Debug|Win32
+		{15482C40-FB53-41B0-B2A8-F2452FD91D39}.Release.ActiveCfg = Release|Win32
+		{15482C40-FB53-41B0-B2A8-F2452FD91D39}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

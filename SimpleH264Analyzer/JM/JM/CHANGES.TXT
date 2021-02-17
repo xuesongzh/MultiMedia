@@ -1,0 +1,927 @@
+Changes for Version JM 8.6 to JM 8.5
+------------------------------------
+- encoder: fix command line checking order (KS)
+- encoder: fix coded_frame flag (KS)
+- encoder: fix skip mode mb pair problem (KS)
+- decoder: fix macroblock counter (KS)
+- decoder: fix output field pairing (KS)
+- decoder: fix POC previous frame num on MMCO=5(BH)
+- decoder: fix max num ref frames in poc cycle
+- decoder: allow Annex B leading_zero_8bits and trailing_zero_8bits (ZH)
+- decoder: fix SI decoding (MWa)
+- encoder/decoder: fix dpb size (KS)
+- encoder/decoder: hopefully work around VS compiler optimization bug (KS)
+- encoder/decoder: remove a number of gcc warnings (KS)
+
+
+Changes for Version JM 8.5 to JM 8.4
+------------------------------------
+- encoder: fix wrong direct mode selection for non-rd-optimized encoding (KS)
+- decoder: fix RPLR (KS)
+- encoder: fix rate-control for non-rd-optimized encoding (SM/KS)
+- encoder: fix POC mode 1 for stored B pictures (KS)
+- encoder: fix MB AFF encoder/decoder mismatch (KS)
+- encoder: fix list 1 reference index selection (SN)
+- encoder: fix IDR pictures and wrapping around frame_num (TK/KS)
+- encoder: fix log2_max_frame_num_minus4 and log2_max_pic_order_cnt_lsb_minus4 (AT)
+- encoder/decoder: align chroma sample interpolation to standard text (no real bug, only cleanup) (ZH/KS)
+
+
+Changes for Version JM 8.4 to JM 8.3
+------------------------------------
+- encoder: fix encoder merge bug (AT)
+- encoder: count parameter set bits (AT)
+- decoder: spatial direct long-term support (KS)
+- decoder: fix colocation problem (KS)
+- decoder: fix SPS/PPS changes (KS)
+- decoder: fix reordering with multiple slices (KS)
+- decoder: allow paired output of unpaired fields (KS)
+- decoder: fix POC on MMCO=5 (KS)
+- decoder: fix picture unmarking problem (KS)
+- decoder: SPS activation on buffering SEI (KS)
+- decoder: weighted prediction typo (AT)
+- decoder: fix CeilLog2 function (KS)
+
+
+Changes for Version JM 8.3 to JM 8.2
+------------------------------------
+- encoder: fast motion estimation fixes und cleanup (WF)
+- decoder: fix for SP decoding (ES)
+- encoder/decoder: direct mode cleanup and fixes (AT)
+- decoder: POC cleanup and fixes (AT)
+- encoder: set log2_max_frame_num_minus4 dynamically (AT)
+- decoder: fix dangling fields (KS)
+- encoder/decoder: fix mismatch in B-pictures with RDOptimization=0 (KS)
+- encoder/decoder: fix redundant_pic_cnt syntax element type (KS)
+- encoder: fix num_slice_groups_minus1>0 bug (KS)
+- decoder: fix field mmco bugs and (KS)
+- decoder: fix initial reference picture list generation with long-term pictures (KS)
+- decoder: fix new picture detection (KS)
+- decoder: fix weighted prediction (KS/AS)
+- encoder/decoder: fix max PPS id (KS)
+- decoder: remove redundant variables (KS)
+- decoder: re-enable non-normative error concealment for non mb-aff (KS/THi)
+- decoder: several smaller fixes (KS)
+
+
+Changes for Version JM 8.2 to JM 8.1a
+-------------------------------------
+- encoder: merge FMO (DW)
+- encoder/decoder: add error/warning if DPB size is zero at specified level (KS)
+- fix unixprep.sh script for Solaris /bin/sh (DD)
+
+
+Changes for Version JM 8.1a to JM 8.1
+-------------------------------------
+- encoder/decoder: fix bug in constrained intra prediction fix (KS)
+- encoder/decoder: fix version number typo (KS)
+
+
+Changes for Version JM 8.1 to JM 8.0
+------------------------------------
+- decoder: fix I_PCM decoding for field macroblocks (AS)
+- encoder: rate control fix (SM)
+- encoder/decoder: fix max DPB size for level 5.0 (KS)
+- encoder/decoder: fix constrained intra prediction left neighbour (KS)
+- decoder: fix crash on SPS activation in SEI (KS)
+- encoder/decoder: documentation updates / remove encodeiff.h (KS)
+- encoder: add basic profile checks (KS)
+
+
+Changes for Version JM 8.0 to JM 7.6
+------------------------------------
+- encoder/decoder: SP filter strength (KS)
+- decoder: fix decoder snr calculation for streams that contain idr pictures (AT)
+- decoder: increase NAL unit buffer size (KS)
+- encoder: further statistics fixes (AW)
+- encoder: fix wrong LumaPrediction4x4 call (AW)
+- encoder: fix reference index writing for MB AFF with one reference frame (AW)
+- decoder: fix bottom field first decoding (KS)
+- encoder: add profile and level idc to config file (KS)
+- encoder/decoder: determine DPB size depending on level (KS)
+- encoder/deocder: fix field pairing (KS)
+- encoder/deocder: fix memory allocation for reference picture list (KS)
+- encoder: decrease list0 size for b slices (KS)
+- encoder: make FME a config file option (TK)
+- encoder: add -h help option (AT)
+- encoder/decoder: fix writing of unpaired field (ZY)
+- decoder: fix currMB calculation in i_pcm reading (ZY)
+- decoder: set ref_pic_num for each slice (KS/AS)
+- decoder: disable deblocking filter P_SLICE simplifications (KS/AS)
+- decoder: "hack fix" for direct mode decoding (AT)
+
+Changes for Version JM7.6 to JM 7.5c
+------------------------------------
+- encoder/decoder: temporal direct loop index fix (RV/AT/KS)
+- encoder: fix memory leak (AT)
+- decoder: reset the wp_offset for the implicit mode (AT)
+- encoder: temporary fix for slice mode 2, Won't work with FMO (PK)
+- decoder: don't reset poc of other field (OD)
+- decoder: fix bw_ref_idx (AT)
+- encoder/decoder: fix long_term initialization (JK)
+- encoder/decoder: fix pic_num / frame_num_wrap initialization for intra sclices (JK)
+- encoder/decoder: datapartition fixed (ZL)
+- encoder: fix stored B pictures (AT)
+- encoder: small mbuffer.c fixes (AT)
+- encoder/decoder: add Visual Studio .NET workspaces (KS)
+- encoder: fix random intra blocks (TSh)
+- encoder: fix statistics (KS)
+- encoder: fix mb delta qp CABAC context selection (KS/AT)
+- encoder: Rate control fixes (SM)
+- encoder/decoder: fix initial reference picture list generation for long term pictures (RV)
+- encoder/decoder: fix no_output_of_prior_pics_flag handling (KS)
+- encoder: FAST_ME fixes (JX)
+
+Changes for Version JM7.5c to JM 7.5b
+-------------------------------------
+- encoder: add DirectInference parameter (AT)
+- encoder: generate interlaced representation, only if interlaced encoding mode (AT/KS)
+- encoder: fix picture aff psnr calculation (AT)
+- encoder: weighted prediction fix (AT)
+- decoder: small direct mode fix (AT)
+- encoder/decoder: reference index fix in generation of field representation (AS)
+- encoder/decoder: fix CurrPicNum for field calculation (KS)
+- encoder: fix CABAC contexts for cbp and skip flag / mb aff (VG/KS)
+- encoder: fix invalid usage of 8x8 temporal direct mode (KS)
+- decoder: fix field psnr calculation (KS)
+- encoder: don't try to output reconstructed sequence, if no file specified (AT)
+- encoder: clean exit if input file reading fails (AT)
+- encoder: initialize POC before initializing parameter sets (KS)
+- encoder: fix POC mode 1 (KS)
+- decoder: rename POC mode 1 variables to match text (KS)
+- encoder/decoder: fix bottom field access in is_short_term_reference()
+                   and is_long_term_reference() (ML)
+
+Changes for Version JM7.5b to JM 7.5a
+-------------------------------------
+Bug fixes
+- encoder: b-frame performance fix (KS)
+- encoder: CABAC context selection fix (KS)
+- encoder: fix typo in rd-opt labda calculation (AT)
+- encoder: weighted prediction updates (AT)
+- encoder: fix wrong reference index if NumberReferenceFrames=1 (KS)
+- encoder: add IDR picture selection parameter (AT)
+
+Changes for Version JM7.5a to JM 7.5
+------------------------------------
+Bug fixes
+- encoder: fix direct mode coding (KS/AT)
+- encoder: reenable old rd-opt labda calculation (KS/AT)
+
+Changes for Version JM7.5 to JM 7.4
+-----------------------------------
+Bug fixes
+- decoder: SEI parsing (JC)
+
+- encoder: merge deblocking filter from decoder (KS)
+- encoder: merge dpb fixes from decoder (KS)
+
+- encoder: rewrite most of MB AFF handling, 
+           support list_0 and list_1 properly, etc. (KS)
+
+- encoder/decoder: fix first_mb_in_slice for mb aff (KS)
+- encoder/decoder: deblocking filter with multiple slices (KS)
+
+
+Changes for Version JM7.4 to JM 7.3
+-----------------------------------
+Bug fixes
+- decoder: lt.ref. pic handling with sliding window (AF) 
+- decoder: fix CABAC parsing bug for skip_flag (KS)
+- decoder: gaps in frame_num (DT)
+- decoder: error message, if direct mode fails (BH)
+- decoder: fix long term reference pictures (KS)
+- decoder: deblocking filter for picture aff (PN)
+- decoder: long term picture handling/MMCO (AF/KS)
+- decoder: chroma QP offset (JS)
+- decoder: frame cropping support (KS)
+- decoder: deblocking filter fix (SY, others)
+
+New features:
+- decoder: I_PCM macroblock mode for VLC (DW)
+- decoder: I_PCM macroblock mode for CABAC (DW)
+- encoder: fast motion estimation
+- encoder: rate control
+
+
+Changes for Version JM7.3 to JM 7.2
+-----------------------------------
+Bug fixes
+- encoder: DPB for field coding (SM)
+- encoder: Spatial direct mode (SM)
+- decoder: POC mode 2 with multiple slices (BH)
+- decoder: data partitioning (has known problem in CAVLC/CABAC parsing when 
+           constrained intra an dp are used)
+- both   : reference picture list generation
+- both   : doxygen documentation generation fixes (KS)
+
+
+Changes for Encoder Version JM7.2 to JM 6.2
+--------------------------------------------
+Bug fixes
+- DPB correlated things, such as motion search etc.(KS,SM)
+- Direct mode(SM)
+
+Changes for Decoder Version JM 7.2 to JM 7.1
+--------------------------------------------
+Bug fixes
+- deblocking filter reference pictures (LK)
+- small POC fixes (KS)
+
+Cleanup
+- remove JVT-F100 syntax support (KS)
+
+Changes for Decoder Version JM 7.1 to JM 7.0
+--------------------------------------------
+Bug fixes
+- loop filter (KS)
+- weighted prediction (KS)
+- reference list generation (KS)
+- 8x8 direct modes (AT)
+- constrained intra prediction (KS)
+
+
+Changes for Decoder Version JM 7.0 to JM 6.2
+--------------------------------------------
+Bug fixes
+- POC updates (BH)
+- CABAC dqant and red_idx_lx contexts (KS)
+- small cleanups and other fixes
+
+Other
+- removed common directory, put a copy of these file in each
+  encoder and decoder 
+
+
+Changes for Version JM 6.2 to JM 6.1b
+--------------------------------------
+Note: This is a decoder only release. Encoding is broken.
+
+Bug fixes
+- rewrote DPB (KS)
+- rewrote most of MB AFF handling (KS)
+- direct mode updates (AT)
+
+- many other cleanups and fixes (various poeple)
+
+
+Changes for Version JM 6.1b to JM 6.1a
+--------------------------------------
+Bug fixes
+* FMO decoding (KS)
+* fix motion vector predictor (HS/KS)
+* intra prediction mode selection (KS)
+* SPS Syntax update frame_height_in_mb -> pic_height_in_mb (KS)
+* fix memory leak (KSa)
+
+Changes for Version JM 6.1a to JM 6.1
+-------------------------------------
+Bug fixes
+* VLC 0 sign bit (AJ)
+* Correct rounding (AJ)
+* Chroma intra pred mode order (AJ/KS)
+* Loop filter chroma QP mapping (RaS)
+* Fix memory leaks (KS)
+* MB AFF fixes (HS)
+* CABAC text alignment (HS)
+* frame_num modulo (KS)
+* intra pred allowed mode fixes (HS/KS)
+
+Cleanups
+* remove strange postfilter arrays from decoder (KS)
+* remove duplicte decoder frame types (_1 and _MULT) (KS)
+* clean up vlc writing (KS)
+
+
+Changes for Version JM 6.1 to JM 6.0a
+-------------------------------------
+New features
+* SEI decoding reenabled and new messages added (KS)
+* Weighted Prediction Updates (JB)
+* POC updated (DT)
+* CABAC slice initializations (HS)
+
+Bug fixes
+* fix mb aff again (KS)
+
+Cleanups
+* remove many gcc warnings (KS)
+* remove unused code (KS)
+* clean up VLC reading (KS)
+* allocate less memory (WYK)
+
+
+Changes for Version JM 6.0a to JM 6.0
+-------------------------------------
+New features
+* chroma loop filter update (CG)
+
+Bug fixes
+* fix overflowing buffer for large image formats (PW/KS)
+* fix large memory leak (KS)
+* slice coding (RaS)
+* fix bit statistics (KS)
+* call EBSPtoRBSP at the decoder (TS/KS)
+
+Cleanups
+* remove some of the gcc warnings and old files (KS)
+
+
+Changes for Version JM 6.0 to JM 5.0h-suehring
+----------------------------------------------
+New features
+* post-Awaji slice header and parameter sets (except POC) (KS)
+
+Removed features
+* ABT (KS)
+
+Bug fixes
+* AFF (picture and mb) (KS)
+* Slice parsing with CAVLC (KS)
+* CABAC byte alignment (KS)
+* lots of stuff I can't remember in detail (KS)
+
+Cleanups
+* lots of stuff I can't remember in detail (KS)
+
+Known problems
+* slices have still encoder mismatch (looks like motion vector prediction)
+* FMO not tested, but probably won't work
+* SEI disabled (needs update to NAL units)
+* weighted prediction implementation in JM 5.0g unfinished
+* Error concealment disabled (needs new triggers)
+* DP (???)
+* I haven't merged any patches, I received since December
+
+Changes for Version JM 5.0h-suehring to JM 5.0g
+-----------------------------------------------
+New features
+* Sequence and Picture Parameter Sets
+* writes Annex B bytestream and RTP packets
+
+
+Changes for Version JM 5.0g to JM 5.0f
+--------------------------------------
+New features
+* Changes for Weigthed Prediction (JB)
+
+Note: This version seems to have severe performance problems
+
+Changes for Version JM 5.0f to JM 5.0e
+--------------------------------------
+New features
+* Reducing Pixel Dependencies for Intra-Prediction (JVT-E111) (GrC)
+
+
+Changes for Version JM 5.0e to JM 5.0d
+--------------------------------------
+New features
+* alternate scan for aff coding
+
+
+Changes for Version JM 5.0d to JM 5.0c
+--------------------------------------
+New features
+* added POC - for implementation details see changes_detail.txt (BH)
+
+Bug Fixes
+* reorder chroma intra pred modes aligned to draft (KS)
+
+Cleanups (no functional change)
+* cleaner parameter transfer for CABAC stuffing words (FB)
+
+
+Changes for Version JM 5.0c to JM 5.0b
+--------------------------------------
+New features
+* CABC Cleanup and Complexity reduction (FB)
+
+Bug Fixes
+* Chroma intra pred fix (AH/KS)
+* Loop filter Clipping (AH)
+
+Cleanups (no functional change)
+* 4x4 intra prediction mode order (KS)
+* remove old qp range support (simplifies loop filter) (KS)
+* remove some never called code (KS)
+
+
+Changes for Version JM 5.0b to JM 5.0a
+--------------------------------------
+New features
+* CABAC cleanup (GB/DM)
+
+
+Changes for Version JM 5.0a to JM 5.0
+-------------------------------------
+Removed features
+* Intra 8x8 sub macroblocks (HS)
+
+Bug Fixes
+* Choose right data partition in RDCost_for_4x4IntraBlocks() MW
+
+
+Changes for Version JM 5.0 to JM 4.4a
+-------------------------------------
+New features
+* Changed startcode length (KS)
+* SEI for                             (SR)
+   a) Unregistered (arbitrary) data
+   b) Registered ITU_T_t35 data
+   c) Random access 
+   d) Pan Scan Information
+
+Removed features
+* Special Position (KS)
+* 1/8 pel motion compensation (KS)
+
+Bug Fixes
+* Temporal Direct mode fix for bottom field (LW)
+* fix statistics file
+
+
+Changes for Version JM 4.4a to JM 4.4
+-------------------------------------
+New features
+* MB AFF and CABAC (GB/HS)
+Bug Fixes
+* fix chroma QP mapping (AH)
+
+
+Changes for Version JM 4.4 to JM 4.3a
+-------------------------------------
+New features
+* FMO mode 3# [JVT-D095] (WYK)
+* FMO modes 4#~6# [JVT-D097] (WYK)
+* Scene information SEI message [JVT-D099] (WYK)
+* Redundant slices [JVT-D101] (WYK)
+
+Note: FMO is broken.
+
+
+Changes for Version JM 4.3a to JM 4.3
+-------------------------------------
+New features
+* Spare Pictures [JVT-D100] (DT)
+* Signaling of Enhanced GOPs [JVT-D098] (DT)
+
+Bug Fixes
+* state table fix (BH)
+* fix chroma intra prediction and MB AFF (DH)
+* double decoder bitstream buffer size for HD material (KS)
+* SP chroma calcultaion fix (MN)
+* fix long term picture remove from buffer (DC)
+
+Changes for Version JM 4.3 to JM 4.2a
+-------------------------------------
+New features
+* Chroma Intra prediction (DH/GB)
+
+Bug Fixes
+* Data partitioning (TO)
+* remove assert from ABT (TH/MW)
+* fix for constrained intra prediction (TWa)
+
+Note: MB AFF is broken in this version
+
+
+Changes for Version JM 4.2a to JM 4.2
+-------------------------------------
+New features
+* Loop Filter Simplification and Improvement (AJ)
+
+
+Changes for Version JM 4.2 to JM 4.1c
+-------------------------------------
+New features
+* Spatial Direct Prediction for MB AFF (AT)
+
+Bug Fixes
+* align simplified intra prediction to text (AH)
+* fix simplified intra prediction for mb aff (AH)
+* fix spatial direct (YK)
+* fix temporal direct (YK)
+* MB AFF fixes (LW,RG)
+
+Cleanups
+* clean up decode_one_slice (KS)
+* removed commented out code (KS)
+
+
+Changes for Version JM 4.1c to JM 4.1b
+--------------------------------------
+New features
+* Implicit bi-predictive weighting (YK)
+
+Bug Fixes
+* MAX_QP define (AJ)
+
+
+Changes for Version JM 4.1b to JM 4.1a
+--------------------------------------
+New features
+* Simplification of Intra Prediction (AH)
+
+Cleanups
+* also always enable EncapsulatedNALPayload at the decoder (KS)
+* reference frame check AFF fix (AT)
+
+
+Changes for Version JM 4.1a to JM 4.1
+-------------------------------------
+New features
+* Spatial Direct Prediction (AT)
+  Note: Spatial Direct Currently disabled for MB-AFF
+
+Bug Fixes
+* SP chroma bug fixed (XS)
+  Removed SP Switch flag from SI encoding (AT)
+  Corrected readSyntaxElement_fixed (AT)
+* close reconstruction file only if opened (LWi)
+* MB AFF fixes (AT)
+
+Cleanups
+* remove double scan routines (KS)
+* always enable EncapsulatedNALPayload (KS)
+
+
+Changes for Version JM 4.1 to JM 4.0d
+-------------------------------------
+New features
+* macroblock adaptive frame/field (LW)
+
+
+Changes for Version JM 4.0d to JM 4.0c
+--------------------------------------
+Bug Fixes
+* CAVLC/AFF memory allocation (KL)
+* Solaris compiler problem (MW)
+* CAVLC and ABT updates
+
+
+Changes for Version JM 4.0c to JM 4.0b
+-------------------------------
+New features
+* New Macroblock modes for SP-frames [JVT-B055] (RK)
+  Note: some problems related to decoding of SI-frames
+	are reported and have to be fixed
+ 
+
+
+Changes for Version JM 4.0b to JM 4.0a
+-------------------------------
+New features
+* CAVLC [JVT-C028, D034, D036] (KL, JA)
+* Low Complexity Diagonal Mode for Intra Prediction [JVT-D059] (GrC)
+
+Bug Fixes
+* Bitstream in MSB first order for CABAC (DM, GB)
+
+
+Changes for Version JM 4.0a to JM 3.9a
+-------------------------------
+New features
+* Improved CABAC [JVT-C060] (HS, GB))
+* Fast Arithmetic Coding for CABAC [JVT-C061] (DM, GB)
+* CABAC cleanup [JVT-D019] (GB, DM)
+* CABAC and ABT [JVT-D021] (HS, DM, GH))
+* New end-of-slice signaling for CABAC [JVT-D020] (HS)
+
+
+Changes for Version JM 3.9a to JM 3.9
+-------------------------------------
+
+Bug Fixes
+* fix ABT and VLC (MW)
+* fix slice mode 2 (KS)
+
+
+Changes for Version JM 3.9 to JM 3.8
+------------------------------------
+
+Bug Fixes
+* fix bitstream NAL encapsulation for slice modes 1,2 and interlace (KS)
+* merge interlace buffer changes (KP/KS)
+* fix encoder/decoder mismatch for SP-frames (MW)
+* remove unnecessary calculations (AT)
+* fix SP compiling warning (FW)
+* disable 8x8 intra blocks in data partitioning mode (TO)
+
+Cleanups
+* remove dead code and variables (KS)
+* free all prviously allocated memory (KS)
+
+Note:
+* FMO is currently broken
+
+Changes for Version JM 3.8 to JM 3.7
+------------------------------------
+
+New features
+* Adaptive Block-size Transforms (MW)
+
+Changes for Version JM 3.7 to JM 3.6
+------------------------------------
+
+New features
+* Loop filter complexity reduction [JVT-C094] (AJ)
+
+
+Changes for Version JM 3.6 to JM 3.5
+------------------------------------
+
+New features
+* support for FMO, see JVT-C089-C092 (SW)
+  -> FMO requires RTP file format and ConstrainedIntraPrediction = 1
+
+Bug Fixes
+* many FMO and out-of-order slices related ones (SW)
+* fix old QPs (KS)
+* fix chroma coding (AT/KS)
+* error concealment fix (YW)
+
+Cleanups
+* really remove old start codes (KS)
+* remove some unused decoder functions (KS)
+
+Note:
+* in Version 3.5 and 3.6 is in the bit stream format the Slice mode broken
+* RTP still has the ASCII Parameter Set format
+
+Changes for Version JM 3.4 to JM 3.5
+------------------------------------
+
+New Features
+* improved SP technique [JVT-c114] (FW)
+* add syntax flag for switching (FW)
+
+
+Bug Fixes
+* new QP range bug fixes (chroma & SP coding) (AT/FW)
+* SKIP mode support and Runlength Coding for SP frames (AT/FW)
+* Modified lambda weight in RDO for SP frames (AT/FW)
+
+
+Changes for Version JM 3.4 to JM 3.3
+------------------------------------
+
+New Features
+* stuffing to prevent emulation of start-code [JVT-C064] (SR)
+* New start-code for byte-stream format. (SR)
+* New method for slice-level QP signaling [JVT-C136] (SR)
+* QP range shifted to [0,51] (SR)
+  -> use #define _OLDSTYLEQP_ for old range
+
+Bug Fixes
+* fix single reference frame problem (AT)
+* fix B-Frame coding (AT)
+* fix ADAPT_LAST_GROUP (DT)
+* fix bit statistics (KS)
+* fix search if _FAST_FULL_ME_ disabled (KS)
+
+Cleanups
+* remove old slice-level QP signaling (KS)
+* remove old start codes (KS)
+* large QP handling cleanups (KS)
+
+
+Changes for Version JM 3.3 to JM 3.2
+------------------------------------
+
+New Features
+* Consideration of MVs of Direct Mode Macroblocks in B frame MV prediction [JVT-C127] (AT)
+
+Bug Fixes
+* fix deblocking filter for B frames [JVT-C127] (AT)
+
+
+Changes for Version JM 3.2 to JM 3.1
+------------------------------------
+
+New Features
+* Skip mode motion compensation as defined in JVT-C027 (JL)
+
+
+Changes for Version JM 3.1 to JM 3.0
+------------------------------------
+
+New Features
+* Quantization range changed from [-8,39] to [-12,39] [JVT-B039] (AH)
+* Simplified rounding for transform and quantization [JVT-C136] (AH)
+* Simplified formula for intra 16x16 plane prediction [JVT-C136] (AH)
+
+Bug Fixes
+* fix RTP assert (DT)
+
+Cleanups
+* remove gcc warnings (KS)
+
+Known Problems
+* AFF + 1/8 pel motion compensation broken
+* if "LastFrameNumber" is used, "FramesToBeEncoded" must be >= "LastFrameNumber"
+
+
+Changes for Version JM 3.0 to JM 2.1
+------------------------------------
+
+New Features
+* Signaling of "Clean" Random Access Points [JVT-B042, JVT-C083] (DT)
+
+Bug Fixes
+* error concealment fixes (TO)
+* constrained intra prediction (GRC)
+* align intra pred to CD text (GRC)
+* adaptive frame/field fixes 
+  - lambda calculation (LW)
+  - average psnr output (LW)
+  - fix slice modes 1 and 2 (LW)
+  - fix data partitioning (TO)
+* add adaptive frame/field parameter consistency checks (KS/LW)
+* encoder frame buffer management changes for non-AFF mode (DT)
+
+Cleanups
+* remove old 6 mode intra prediction (KS)
+
+
+Changes for Version JM 2.1 to JM 2.0b
+-------------------------------------
+
+New Features
+* adaptive frame/field coding (LW)
+
+Bug Fixes
+* intra 4x4 prediction block availability (several people)
+* DP fixes (TO)
+
+
+Changes for Version JM 2.0b to JM 2.0
+-------------------------------------
+Bug Fixes
+* fix array bounds overflow in cabac.c (KS/IM)
+* fix byte sex issues in IFF (KS)
+* add UNIX preparation script (KS)
+
+
+Changes for Version JM 2.0 to JM 1.9
+-------------------------------------
+I dropped adaptive frame/field coding, so only bugfixes for this release
+
+Bug Fixes
+* decoder delta qp decoding fix (HS)
+* correction of wrong calculation of written bits in CABAC mode 
+  (correction according to the new coding engine) (DM)
+* major cleanup of the routines related to the statistics reported 
+  in stat.dat (DM):
+  - correction of wrong calculation of used bits for header and mode info
+  - addition of new table entries "motion info" and "stuffing bits"
+    such that the sum of all entries matches _exactly_ the 
+    plotted number of average bits/frame, which in turn is
+    now equal to the number of bits reported on the console
+* correction of wrong calculation of written bytes for CABAC in RTP mode  (DM)
+* correction of total bits/frame printed out to the data.txt file for with B-frames (JL)
+* fix mprr size for new intra pred modes (GC)
+* fix frame_rate calculation for B-frames (GH)
+* fix restriction on reference frames for intra frame period (KS)
+* first step RPSL fixes (KS)
+* fix RTP assert (WYK)
+* tracefile fix (DC)
+* fix spelling of config file parameter "NumberReferenceFrames" (MB)
+
+Changes for Version JM 1.9 to JM 1.8
+-------------------------------------
+New Features
+* Loopfilter revised (PL)
+* INTRA-Prediction on unfiltered content (PL)
+
+Bug Fixes
+* use for each intra pred mode one CABAC context (DM)
+* increase version number (KS)
+* Interim file format updates (DT)
+
+Cleanups
+* GCC compatibility, remove warnings/unused variables (KS)
+* Add UNIX Makefiles (KS/HS)
+
+
+Changes for Version JM 1.8 to JM 1.7
+------------------------------------
+New Features
+* New Intra Prediction Modes [JVT-B080] (GrC)
+
+
+Changes for Version JM 1.7 to JM 1.4
+------------------------------------
+New Features
+* New Arithmetic Coding Engine [JVT-B036, Moffat/Neal/Witten ACM98]
+* Improved CABAC [JVT-B101] (GB)
+* Improved MB Pred Modes [JVT-B054] (HS)
+
+Bug Fixes
+* Fix MB statistics (HS)
+* Compile fix ERPS test (KS)
+* Restrict qp_factor for CABAC initialization (DM/KS)
+* Uses MAX_QP for IFF qp encoding (KS)
+* Fix decoder TR calculation (again) (AT)
+* Fix wrong concealment for B-frames and TR wrap around (KS)
+* Correct error handling if first slice (or first frame) was lost (TO)
+* Introduced macroblock map for concealment of lost or damaged macroblocks (TO)
+
+
+Changes for Version JM 1.4 to JM 1.0
+------------------------------------
+New Features
+* Interim file format according to Appendix III of WD-1 [JVT-A003] (DT)
+* Transform and Quantizer changes [JVT-B008, JVT-B038] (AH)
+* VLC update [JVT-B029] (LK)
+* Updated Error Rebust Macroblock Mode and Reference Frame Selection [JVT-B102] (DK)
+
+Bug Fixes
+* DP & CABAC (TO)
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+People:
+KS      Karsten Suehring        suehring@hhi.de
+SM      Siwei Ma                swma@jdl.ac.cn
+AF      Arild Fuldseth          arild.fuldseth@tandberg.no
+AH      Antti Hallapuro         antti.hallapuro@nokia.com
+AJ      Anthony Joch            anthony@ubvideo.com
+AS      Albert Simpson          ASimpson@amphion.com
+AT      Alexis Michael Tourapis alexismt@ieee.org
+AW      Armand Wemelsfelder     wemel@planet.nl
+BH      Barry Haskell           bhaskell@apple.com
+CG      Cristina Gomila         GomilaC@tce.com
+DC      Doug Chin               dougchin@sandvideo.com
+DD      Dmitriy Demin           Dmitriy.Demin@Sun.COM
+DH      Dzung Hoang             dzung.hoang@conexant.com
+DK      Dimitris Kontopodis     dkonto@eikon.tum.de
+DM      Detlev Marpe            marpe@hhi.de
+DT      Dong Tian               tian@cs.tut.fi
+DW      Dong Wang               Dong.Wang@bristol.ac.uk
+ES	Eric Setton		esetton@stanford.edu
+FB      Frank Bossen            bossen@docomolabs-usa.com
+GB      Gabi Blaetterman        blaetter@hhi.de
+GC      Guy Cote                guy@videolocus.com
+GrC     Greg Conklin            gregc@real.com
+GS      Gary Sullivan           garysull@microsoft.com
+FW      Feng Wu                 fengwu@microsoft.com
+HS      Heiko Schwarz           hschwarz@hhi.de
+IL      Inge Lille-Langoy       Inge.Lille-Langoy@telenor.com
+IM      Iole Moccagatta         imoccaga@lsil.com
+JA      James Au                james@ubvideo.com
+JB      Jill Boyce              BoyceJ@tce.com
+JC      John Cox                jc@sj.co.uk
+JK      Jeong Kwon Kim          kjk@mcubeworks.com
+JL      Jani Lainema            Jani.Lainema@nokia.com
+JS      Joonho Song             jhsong@varovision.com
+JX      Jian Feng Xu            fenax@video.mdc.tsinghua.edu.cn
+KL      Karl Lillevold          Karll@real.com
+KP      Krit Panusopone         KPanusopone@gi.com
+KSa     Kazushi Sato            kazushi@av.crl.sony.co.jp
+LK      Louis Kerofsky          lkerofsky@sharplabs.com
+LW      Limin Wang              liwang@gi.com
+LWi     Lowell Winger           lwinger@videolocus.com
+MB      Marcus Barkowsky        Marcus.Barkowsky@nt.e-technik.uni-erlangen.de
+MG      Michael Gallant         mgallant@videolocus.com
+ML      Maxim Lobasso           lobasso@hotmail.com
+MN      Mike Nilsson            mike.nilsson@bt.com
+MW      Mathias Wien            wien@ient.rwth-aachen.de
+MWa	Michael Walter		eiMichaelWalter@web.de
+OD      Olivier Deygas          olivier.deygas@st.com
+PK      Petr Kadlec             Kadlec@FTW.at
+PL      Peter List              Peter.List@t-systems.de
+PN      Pavel Novotny           pnovotny@lsil.com
+PW      Ping Wu                 pwu@tandbergtv.com
+RG      Rajeev Gandhi           rajeev@motorola.com
+RK      Ragip Kurceren          ragip.kurceren@nokia.com
+RS      Rickard Sjoberg         Rickard.Sjoberg@era.ericsson.se
+RaS     Raghavan Subramaniyan   Raghavan.S@motorola.com
+RV      Rajesh Kumar S Venkata  v-rajesh.kumar@st.com
+SR      Shankar Regunathan      shanre@microsoft.com
+SM	Sebastian Manciulea	sebastian@splash.ro
+SN	Satoshi Nakagawa	nakagawa@okilab.net
+SW      Stephan Wenger          stewe@cs.tu-berlin.de
+SY      Steve Yao               steveyao@sandvideo.com
+TH      Till Hallbach           halbach@tele.ntnu.no
+THi	Tobias Hinz		hinz@hhi.de
+TK      Thomas Kunlin           thomas.kunlin@st.com
+TO      Tobias Oelbaum          drehvial@gmx.net
+TS      Teruhiko Suzuki         teruhiko@av.crl.sony.co.jp
+TSh     Tamar Shoham            Tamar.Shoham@comverse.com
+TSt     Thomas Stockhammer      stockhammer@lnt.ei.tum.de
+TW      Thomas Wiegand          wiegand@hhi.de
+TWe     Thomas Wedi             wedi@tnt.uni-hannover.de
+TWa     Toby Walker             tobyw@usrl.sony.com
+VG      Valeri George           valeri.george@hhi.fraunhofer.de
+VV      Viktor Varsa            viktor.varsa@nokia.com
+WF	Wenfang Fu		fwf@video.mdc.tsinghua.edu.cn
+WYK     Ye-Kui Wang             wyk@ieee.org
+YK      Yoshihiro Kikuchi       yoshihiro.kikuchi@toshiba.co.jp
+YL      Yann Lemaguet           yann.lemaguet@philips.com
+YW      Ye-Kui Wang             wyk@ieee.org
+XS      Xiaoyan Sun             sunxiaoyan@msrchina.research.microsoft.com      
+ZH	Zhou Heng		zhou_heng@yahoo.com
+ZL      Li Zhang                zhangli@jdl.ac.cn
+ZX      Z. Xue                  jon_xz@yahoo.com
+ZY      Zheng Yanzhao           yzzheng@singnet.com
