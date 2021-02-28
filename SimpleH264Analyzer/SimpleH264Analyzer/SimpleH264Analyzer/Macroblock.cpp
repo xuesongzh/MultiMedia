@@ -244,7 +244,7 @@ void CMacroblock::interpret_mb_mode() {
 }
 
 int CMacroblock::Get_number_current(int block_idc_row, int block_idc_column) {
-    int nC = 0, topIdx = 0, leftIdx = 0, leftNum = 0, topNum = 0;
+    int nC = 0, topIdx = 0, leftIdx = 0, topNum = 0, leftNum = 0;
     bool available_top = false, available_left = false;
 
     get_neighbor_available(available_top, available_left, topIdx, leftIdx, block_idc_row, block_idc_column);
@@ -305,8 +305,7 @@ int CMacroblock::get_neighbor_available(bool &available_top, bool &available_lef
     if (!top_edge_mb) {
         available_top = true;
         topIdx = block_idc_column == 0 ? (mb_idx - width_in_mb) : mb_idx;
-    } else  //ÉÏ±ßÑØºê¿é
-    {
+    } else {  //?????
         if (block_idc_column == 0) {
             available_top = false;
         } else {
@@ -318,8 +317,7 @@ int CMacroblock::get_neighbor_available(bool &available_top, bool &available_lef
     if (!left_edge_mb) {
         available_left = true;
         leftIdx = block_idc_row == 0 ? (mb_idx - 1) : mb_idx;
-    } else  //×ó±ßÑØºê¿é
-    {
+    } else {  //?????
         if (block_idc_row == 0) {
             available_left = false;
         } else {
@@ -334,7 +332,7 @@ int CMacroblock::get_neighbor_available(bool &available_top, bool &available_lef
 int CMacroblock::get_top_neighbor_coeff_numbers(int topIdx, int block_idc_row, int block_idc_column) {
     int nzCoeff = 0, target_idx_column = 0;
 
-    if (topIdx == m_mb_idx) {
+    if (topIdx == m_mb_idx) {  //??
         target_idx_column = block_idc_column - 1;
         nzCoeff = m_residual->Get_sub_block_number_coeffs(block_idc_row, target_idx_column);
     } else {

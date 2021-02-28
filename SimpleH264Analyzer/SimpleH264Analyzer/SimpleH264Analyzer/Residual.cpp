@@ -327,7 +327,7 @@ int CResidual::parse_luma_residual(int blockType, UINT8 cbp_luma) {
     for (block_column = 0; block_column < 4; block_column += 2) {
         for (block_row = 0; block_row < 4; block_row += 2) {
             // 16x16 -> 4 * 8x8
-            if (m_macroblock_belongs->Get_pps_active()->Get_entropy_coding_flag() == false) {
+            if (!m_macroblock_belongs->Get_pps_active()->Get_entropy_coding_flag()) {
                 // CAVLC
                 for (block_sub_column_idc = block_column; block_sub_column_idc < block_column + 2; block_sub_column_idc++) {
                     for (block_sub_row_idc = block_row; block_sub_row_idc < block_row + 2; block_sub_row_idc++) {
@@ -402,16 +402,14 @@ int CResidual::get_luma4x4_coeffs(int blockType, int block_idc_row, int block_id
         targetBlock->trailingOnes = trailingOnes;
     }
 
-    if (numCoeff)  //包含非0系数
-    {
-        if (trailingOnes)  //拖尾系数
-        {
+    if (numCoeff) {          //包含非0系数
+        if (trailingOnes) {  //拖尾系数
             //读取拖尾系数符号
             int signValue = Get_uint_code_num(m_pSODB, m_bypeOffset, m_bitOffset, trailingOnes);
             int trailingCnt = trailingOnes;
             for (int coeffIdx = 0; coeffIdx < trailingOnes; coeffIdx++) {
                 trailingCnt--;
-                if ((signValue >> trailingCnt) & 1) {
+                if ((signValue >> trailingCnt) & 1) {  // 0：1, 1：-1
                     targetBlock->trailingSign[coeffIdx] = -1;
                 } else {
                     targetBlock->trailingSign[coeffIdx] = 1;
@@ -442,8 +440,8 @@ int CResidual::get_luma4x4_coeffs(int blockType, int block_idc_row, int block_id
             targetBlock->levels[k] = level;
         }
 
-        // 读取解析run
-        UINT8 zerosLeft = 0, totalZeros = 0, run = 0;
+        // 读取解析totalZeros
+        UINT8 totalZeros = 0;
         if (numCoeff < max_coeff_num) {
             err = get_total_zeros(totalZeros, numCoeff - 1);
             if (err < 0) {
@@ -457,7 +455,7 @@ int CResidual::get_luma4x4_coeffs(int blockType, int block_idc_row, int block_id
         //读取解析run_before
         int runBefore_vlcIdx = 0;
         i = numCoeff - 1;
-        zerosLeft = totalZeros;
+        UINT8 zerosLeft = totalZeros, run = 0;
         if (zerosLeft > 0 && i > 0) {
             do {
                 runBefore_vlcIdx = (zerosLeft - 1 < 6 ? zerosLeft - 1 : 6);
@@ -778,8 +776,8 @@ int CResidual::get_coeff_level(int &level, int levelIdx, UINT8 trailingOnes, int
 }
 
 int CResidual::get_total_zeros(UINT8 &totalZeros, int totalZeros_vlcIdx) {
-    int err = 0, idx2 = 0;
     UINT8 idx1 = 0;
+    int err = 0, idx2 = 0;
     int *lengthTable = &totalZerosTable_Length[totalZeros_vlcIdx][0];
     int *codeTable = &totalZerosTable_Code[totalZeros_vlcIdx][0];
     err = search_for_value_in_2D_table(totalZeros, idx1, idx2, lengthTable, codeTable, 16, 1);
@@ -805,7 +803,8 @@ int CResidual::get_run_before(UINT8 &runBefore, int runBefore_vlcIdx) {
 
 int CResidual::get_numCoeff_and_trailingOnes_chromaDC(UINT8 &totalCoeff, UINT8 &trailingOnes, int &token) {
     int err = 0;
-    int *lengthTable = &coeffTokenTableChromaDC_Length[0][0], *codeTable = &coeffTokenTableChromaDC_Code[0][0];
+    int *lengthTable = &coeffTokenTableChromaDC_Length[0][0];
+    int *codeTable = &coeffTokenTableChromaDC_Code[0][0];
 
     err = search_for_value_in_2D_table(totalCoeff, trailingOnes, token, lengthTable, codeTable, 5, 4);
     if (err < 0) {
