@@ -74,7 +74,8 @@ int Peek_uint_code_num(UINT8 *buf, UINT32 bytePosition, UINT8 bitPosition, UINT8
 
 // Parse bit stream as me(coded_block_pattern)
 int Get_me_code_num(UINT8 *buf, UINT32 &bytePosition, UINT8 &bitPosition) {
-    int intra_cbp[48] = {47, 31, 15, 0, 23, 27, 29, 30, 7, 11, 13, 14, 39, 43, 45, 46, 16, 3, 5, 10, 12, 19, 21, 26, 28, 35, 37, 42, 44, 1, 2, 4, 8, 17, 18, 20, 24, 6, 9, 22, 25, 32, 33, 34, 36, 40, 38, 41};
+    int intra_cbp[48] = {47, 31, 15, 0,  23, 27, 29, 30, 7, 11, 13, 14, 39, 43, 45, 46, 16, 3,  5,  10, 12, 19, 21, 26,
+                         28, 35, 37, 42, 44, 1,  2,  4,  8, 17, 18, 20, 24, 6,  9,  22, 25, 32, 33, 34, 36, 40, 38, 41};
     int uev = Get_uev_code_num(buf, bytePosition, bitPosition);
     return intra_cbp[uev];
 }
@@ -101,45 +102,45 @@ int Extract_single_nal_unit(const char *fileName, UINT8 *nalBuf, UINT32 nalLen) 
 
 /*
 block position of each index:
-row:  0   1   2   3
+    row:  0   1   2   3
 _______________
 col:0	| 0 | 1 | 4 | 5 |
-1	| 2 | 3 | 6 | 7 |
-2	| 8 | 9 | 12| 13|
-3	| 10| 11| 14| 15|
+    1	| 2 | 3 | 6 | 7 |
+    2	| 8 | 9 | 12| 13|
+    3	| 10| 11| 14| 15|
 */
 int block_index_to_position(UINT8 blkIdx, UINT8 &block_pos_row, UINT8 &block_pos_column) {
     /*
-	block8_index of each index:			block4_index of each index:
-	row:  0   1   2   3					row:  0   1   2   3
-	_______________					 _______________
-	col:0	| 0 | 0 | 1 | 1 |			col:0	| 0 | 1 | 0 | 1 |
-	1	| 0 | 0 | 1 | 1 |				1	| 2 | 3 | 2 | 3 |
-	2	| 2 | 2 | 3 | 3 |				2	| 0 | 1 | 0 | 1 |
-	3	| 2 | 2 | 3 | 3 |				3	| 2 | 3 | 2 | 3 |
-	*/
-    UINT8 block8_idx = blkIdx / 4, block4_index = blkIdx % 4; /* 0 1 2 3 */
+        block8_index of each index:			block4_idx of each index:
+            row:  0   1   2   3					row:  0   1   2   3
+        _______________					 _______________
+        col:0	| 0 | 0 | 1 | 1 |			col:0	| 0 | 1 | 0 | 1 |
+            1	| 0 | 0 | 1 | 1 |				1	| 2 | 3 | 2 | 3 |
+            2	| 2 | 2 | 3 | 3 |				2	| 0 | 1 | 0 | 1 |
+            3	| 2 | 2 | 3 | 3 |				3	| 2 | 3 | 2 | 3 |
+        */
+    UINT8 block8_idx = blkIdx / 4, block4_idx = blkIdx % 4; /* 0 1 2 3 */
 
     /*
-															  (block_row, block_column) of each index:
-															  row:    0       1       2       3
-															  _______________ _______________
-															  col:0	| (0,0) | (1,0) | (0,0) | (1,0) |
-															  1	| (0,1) | (1,1) | (0,1) | (1,1) |
-															  2	| (0,0) | (1,0) | (0,0) | (1,0) |
-															  3	| (0,1) | (1,1) | (0,1) | (1,1) |
-															  */
-    UINT8 block4_row = block4_index % 2, block4_column = block4_index / 2; /* 0 1 */
+        (block_row, block_column) of each index:
+            row:    0       1       2       3
+        _______________ _______________
+        col:0	| (0,0) | (1,0) | (0,0) | (1,0) |
+            1	| (0,1) | (1,1) | (0,1) | (1,1) |
+            2	| (0,0) | (1,0) | (0,0) | (1,0) |
+            3	| (0,1) | (1,1) | (0,1) | (1,1) |
+        */
+    UINT8 block4_row = block4_idx % 2, block4_column = block4_idx / 2; /* 0 1 */
 
     /*
-																		   (block_row, block_column) of each index:
-																		   row:    0       1       2       3
-																		   _______________ _______________
-																		   col:0	| (0,0) | (1,0) | (2,0) | (3,0) |
-																		   1	| (0,1) | (1,1) | (2,1) | (3,1) |
-																		   2	| (0,2) | (1,2) | (2,2) | (3,2) |
-																		   3	| (0,3) | (1,3) | (2,3) | (3,3) |
-																		   */
+        (block_row, block_column) of each index:
+            row:    0       1       2       3
+        _______________ _______________
+        col:0	| (0,0) | (1,0) | (2,0) | (3,0) |
+            1	| (0,1) | (1,1) | (2,1) | (3,1) |
+            2	| (0,2) | (1,2) | (2,2) | (3,2) |
+            3	| (0,3) | (1,3) | (2,3) | (3,3) |
+    */
     UINT8 block_row = block4_row + 2 * (block8_idx % 2), block_column = block4_column + 2 * (block8_idx / 2);
 
     block_pos_row = block_row;
@@ -149,8 +150,10 @@ int block_index_to_position(UINT8 blkIdx, UINT8 &block_pos_row, UINT8 &block_pos
 }
 
 UINT8 position_to_block_index(UINT8 block_pos_row, UINT8 block_pos_column) {
-    int block8_row = block_pos_row / 2, block8_column = block_pos_column / 2, block8_index = block8_row + block8_column * 2;
-    int block4_row = block_pos_row % 2, block4_column = block_pos_column % 2, block4_index = block4_row + block4_column * 2;
+    int block8_row = block_pos_row / 2, block8_column = block_pos_column / 2,
+        block8_index = block8_row + block8_column * 2;
+    int block4_row = block_pos_row % 2, block4_column = block_pos_column % 2,
+        block4_idx = block4_row + block4_column * 2;
 
-    return block4_index + 4 * block8_index;
+    return block4_idx + 4 * block8_index;
 }

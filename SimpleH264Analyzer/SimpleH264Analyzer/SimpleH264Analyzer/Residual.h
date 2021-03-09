@@ -1,17 +1,17 @@
 #ifndef _RESIDUAL_H_
 #define _RESIDUAL_H_
 
-const int SNGL_SCAN[16][2] =
-    {{0, 0}, {1, 0}, {0, 1}, {0, 2}, {1, 1}, {2, 0}, {3, 0}, {2, 1}, {1, 2}, {0, 3}, {1, 3}, {2, 2}, {3, 1}, {3, 2}, {2, 3}, {3, 3}};
+// Z字扫描
+const int SNGL_SCAN[16][2] = {{0, 0}, {1, 0}, {0, 1}, {0, 2}, {1, 1}, {2, 0}, {3, 0}, {2, 1},
+                              {1, 2}, {0, 3}, {1, 3}, {2, 2}, {3, 1}, {3, 2}, {2, 3}, {3, 3}};
 
 //! Dequantization coefficients
-const int dequant_coef[6][4][4] = {
-    {{10, 13, 10, 13}, {13, 16, 13, 16}, {10, 13, 10, 13}, {13, 16, 13, 16}},
-    {{11, 14, 11, 14}, {14, 18, 14, 18}, {11, 14, 11, 14}, {14, 18, 14, 18}},
-    {{13, 16, 13, 16}, {16, 20, 16, 20}, {13, 16, 13, 16}, {16, 20, 16, 20}},
-    {{14, 18, 14, 18}, {18, 23, 18, 23}, {14, 18, 14, 18}, {18, 23, 18, 23}},
-    {{16, 20, 16, 20}, {20, 25, 20, 25}, {16, 20, 16, 20}, {20, 25, 20, 25}},
-    {{18, 23, 18, 23}, {23, 29, 23, 29}, {18, 23, 18, 23}, {23, 29, 23, 29}}};
+const int dequant_coef[6][4][4] = {{{10, 13, 10, 13}, {13, 16, 13, 16}, {10, 13, 10, 13}, {13, 16, 13, 16}},
+                                   {{11, 14, 11, 14}, {14, 18, 14, 18}, {11, 14, 11, 14}, {14, 18, 14, 18}},
+                                   {{13, 16, 13, 16}, {16, 20, 16, 20}, {13, 16, 13, 16}, {16, 20, 16, 20}},
+                                   {{14, 18, 14, 18}, {18, 23, 18, 23}, {14, 18, 14, 18}, {18, 23, 18, 23}},
+                                   {{16, 20, 16, 20}, {20, 25, 20, 25}, {16, 20, 16, 20}, {20, 25, 20, 25}},
+                                   {{18, 23, 18, 23}, {23, 29, 23, 29}, {18, 23, 18, 23}, {23, 29, 23, 29}}};
 
 typedef struct Coeff4x4Block {
     bool emptyBlock;
@@ -91,7 +91,8 @@ class CResidual {
     int get_numCoeff_and_trailingOnes_chromaDC(UINT8 &totalCoeff, UINT8 &trailingOnes, int &token);
     int get_total_zeros_chromaDC(UINT8 &totalZeros, int totalZeros_vlcIdx);
 
-    int search_for_value_in_2D_table(UINT8 &value1, UINT8 &value2, int &code, int *lengthTable, int *codeTable, int tableWidth, int tableHeight);
+    int search_for_value_in_2D_table(UINT8 &value1, UINT8 &value2, int &code, int *lengthTable, int *codeTable,
+                                     int tableWidth, int tableHeight);
 
     void restore_8x8_coeff_block_luma(int (*matrix)[4][4], int idx, int blockType);
     void restore_4x4_coeff_block_luma(int column_idx, int row_idx, int blockType);

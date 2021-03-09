@@ -6,17 +6,9 @@ class CSliceStruct;
 class CResidual;
 
 // 宏块类型
-typedef enum {
-    P8x8 = 8,
-    I4MB,
-    I16MB,
-    IBLOCK,
-    SI4MB,
-    MAXMODE,
-    IPCM
-} MacroblockType;
+typedef enum { P8x8 = 8, I4MB, I16MB, IBLOCK, SI4MB, MAXMODE, IPCM } MacroblockType;
 
-//4×4帧内预测模式
+// 4×4帧内预测模式
 typedef enum {
     VERT_PRED,
     HOR_PRED,
@@ -29,17 +21,12 @@ typedef enum {
     HOR_UP_PRED
 } IntraMode4x4;
 
-//16×16帧内预测模式
-typedef enum {
-    VERT_PRED_16,
-    HOR_PRED_16,
-    DC_PRED_16,
-    PLANE_16
-} IntraMode16x16;
+// 16×16帧内预测模式
+typedef enum { VERT_PRED_16, HOR_PRED_16, DC_PRED_16, PLANE_16 } IntraMode16x16;
 
 // 预测模式结构
 typedef struct Intrleft_diff2_negativeredStruct {
-    UINT8 block_mode;  //block_mode : 0 - 4x4 mode; 1 - 8x8 mode;
+    UINT8 block_mode;  // block_mode : 0 - 4x4 mode; 1 - 8x8 mode;
     bool prev_intra_pred_mode_flag;
     UINT8 rem_intra_pred_mode;
 
@@ -53,9 +40,7 @@ typedef struct Intrleft_diff2_negativeredStruct {
 // 变换系数矩阵
 typedef struct MacroBlockCoeffArray {
     int luma_coeff[4][4][16];
-    MacroBlockCoeffArray() {
-        memset(luma_coeff, 0, 256 * sizeof(int));
-    }
+    MacroBlockCoeffArray() { memset(luma_coeff, 0, 256 * sizeof(int)); }
 } MacroBlockCoeffArray;
 
 //相邻块位置结构
@@ -67,7 +52,7 @@ typedef struct NeighborBlockPos {
 
 //相邻块信息
 typedef struct NeighborBlocks {
-    UINT8 flags;  //Availability of neighbor blocks: 1 - left; 2 - top; 4 - top_right; 8 - top_left;
+    UINT8 flags;  // Availability of neighbor blocks: 1 - left; 2 - top; 4 - top_right; 8 - top_left;
     NeighborBlockPos left;
     NeighborBlockPos top;
     NeighborBlockPos top_right;
@@ -118,23 +103,25 @@ class CMacroblock {
     UINT8 m_coded_block_pattern;
     UINT8 m_mb_qp_delta;
 
-    UINT8 m_intra_pred_mode[16];
+    UINT8 m_intra_pred_mode[16];  // 4x4子块帧内预测模式
     CResidual *m_residual;
-    UINT8 m_pred_block[16][4][4];
-    UINT8 m_reconstructed_block[4][4][4][4];
+    UINT8 m_pred_block[16][4][4];             // 16个子块的预测4x4像素
+    UINT8 m_reconstructed_block[4][4][4][4];  // 16个子块的解码4x4像素
 
     int m_mb_alpha_c0_offset;
     int m_mb_beta_offset;
 
     void interpret_mb_mode();
 
-    int get_neighbor_available(bool &available_top, bool &available_left, int &topIdx, int &leftIdx, int block_idc_row, int block_idc_column);
+    int get_neighbor_available(bool &available_top, bool &available_left, int &topIdx, int &leftIdx, int block_idc_row,
+                               int block_idc_column);
     int get_top_neighbor_coeff_numbers(int topIdx, int block_idc_row, int block_idc_column);
     int get_left_neighbor_coeff_numbers(int leftIdx, int block_idc_row, int block_idc_column);
     int get_top_neighbor_coeff_numbers_chroma(int topIdx, int component, int block_idc_row, int block_idc_column);
     int get_left_neighbor_coeff_numbers_chroma(int leftIdx, int component, int block_idc_row, int block_idc_column);
 
-    int search_for_value_in_2D_table(int &value1, int &value2, int &code, int *lengthTable, int *codeTable, int tableWidth, int tableHeight);
+    int search_for_value_in_2D_table(int &value1, int &value2, int &code, int *lengthTable, int *codeTable,
+                                     int tableWidth, int tableHeight);
 
     int get_intra_blocks_16x16();
     int get_pred_block_16(NeighborBlocks &neighbors, UINT8 &up_left, UINT8 up[16], UINT8 left[16]);
@@ -160,8 +147,10 @@ class CMacroblock {
     int get_filtering_strength(int edge, int strength[16]);
     int filter_block_edge(int dir, int edge, int strength[16], int component);
     int get_edge_pixel_item(int dir, int target_mb_idx, int edge, int pix_idx, int luma, int pixel_arr[8]);
-    int filter_pixel(int *pix_vals, int alpha_val, int beta_val, int *clip_table, int strength[16], int pixel_arr[8], int strength_idx, int component);
-    int set_edge_pixel_item(int *pix_vals, int dir, int target_mb_idx, int edge, int pix_idx, int luma, int pixel_arr[8]);
+    int filter_pixel(int *pix_vals, int alpha_val, int beta_val, int *clip_table, int strength[16], int pixel_arr[8],
+                     int strength_idx, int component);
+    int set_edge_pixel_item(int *pix_vals, int dir, int target_mb_idx, int edge, int pix_idx, int luma,
+                            int pixel_arr[8]);
 };
 
 #endif
