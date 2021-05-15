@@ -41,8 +41,7 @@ CResidual::CResidual(UINT8 *pSODB, UINT32 offset, CMacroblock *mb) {
     }
 }
 
-CResidual::~CResidual() {
-}
+CResidual::~CResidual() {}
 
 int CResidual::Parse_macroblock_residual(UINT32 &dataLength) {
     UINT8 cbp_luma = m_macroblock_belongs->m_cbp_luma;
@@ -170,7 +169,8 @@ void CResidual::Dump_residual_luma(int blockType) {
                     if (targetBlock[row][column].emptyBlock) {
                         g_traceFile << "Empty." << endl;
                     } else {
-                        g_traceFile << "numCoeff: " << to_string(targetBlock[row][column].numCoeff) << "\ttrailingOnes: " << to_string(targetBlock[row][column].trailingOnes) << endl;
+                        g_traceFile << "numCoeff: " << to_string(targetBlock[row][column].numCoeff)
+                                    << "\ttrailingOnes: " << to_string(targetBlock[row][column].trailingOnes) << endl;
                         if (targetBlock[row][column].numCoeff) {
                             if (targetBlock[row][column].trailingOnes) {
                                 g_traceFile << "\ttrailingSign: ";
@@ -219,7 +219,8 @@ void CResidual::Dump_residual_chroma_DC() {
         if (chroma_DC_residual[chromaIdx].emptyBlock) {
             g_traceFile << "Empty." << endl;
         } else {
-            g_traceFile << "numCoeff: " << to_string(chroma_DC_residual[chromaIdx].numCoeff) << "\ttrailingOnes: " << to_string(chroma_DC_residual[chromaIdx].trailingOnes) << endl;
+            g_traceFile << "numCoeff: " << to_string(chroma_DC_residual[chromaIdx].numCoeff)
+                        << "\ttrailingOnes: " << to_string(chroma_DC_residual[chromaIdx].trailingOnes) << endl;
             if (chroma_DC_residual[chromaIdx].numCoeff != 0) {
                 if (chroma_DC_residual[chromaIdx].trailingOnes != 0) {
                     g_traceFile << "\ttrailingSign: ";
@@ -254,25 +255,37 @@ void CResidual::Dump_residual_chroma_AC() {
     for (int chromaIdx = 0; chromaIdx < 2; chromaIdx++) {
         for (int block_idx_y = 0; block_idx_y < 2; block_idx_y++) {
             for (int block_idx_x = 0; block_idx_x < 2; block_idx_x++) {
-                g_traceFile << "ChromaAC[" << chromaIdx << "][" << to_string(block_idx_y) << "][" << to_string(block_idx_x) << "]: ";
+                g_traceFile << "ChromaAC[" << chromaIdx << "][" << to_string(block_idx_y) << "]["
+                            << to_string(block_idx_x) << "]: ";
                 if (chroma_AC_residual[chromaIdx][block_idx_y][block_idx_x].emptyBlock) {
                     g_traceFile << "Empty." << endl;
                 } else {
-                    g_traceFile << "numCoeff: " << to_string(chroma_AC_residual[chromaIdx][block_idx_y][block_idx_x].numCoeff) << "\ttrailingOnes: " << to_string(chroma_AC_residual[chromaIdx][block_idx_y][block_idx_x].trailingOnes) << endl;
+                    g_traceFile << "numCoeff: "
+                                << to_string(chroma_AC_residual[chromaIdx][block_idx_y][block_idx_x].numCoeff)
+                                << "\ttrailingOnes: "
+                                << to_string(chroma_AC_residual[chromaIdx][block_idx_y][block_idx_x].trailingOnes)
+                                << endl;
                     if (chroma_AC_residual[chromaIdx][block_idx_y][block_idx_x].numCoeff != 0) {
                         if (chroma_AC_residual[chromaIdx][block_idx_y][block_idx_x].trailingOnes != 0) {
                             g_traceFile << "\ttrailingSign: ";
-                            for (int idx = 0; idx < chroma_AC_residual[chromaIdx][block_idx_y][block_idx_x].trailingOnes; idx++) {
-                                g_traceFile << to_string(chroma_AC_residual[chromaIdx][block_idx_y][block_idx_x].trailingSign[idx]) << " ";
+                            for (int idx = 0;
+                                 idx < chroma_AC_residual[chromaIdx][block_idx_y][block_idx_x].trailingOnes; idx++) {
+                                g_traceFile
+                                    << to_string(
+                                           chroma_AC_residual[chromaIdx][block_idx_y][block_idx_x].trailingSign[idx])
+                                    << " ";
                             }
                             g_traceFile << endl;
                         }
 
-                        int levelCnt = chroma_AC_residual[chromaIdx][block_idx_y][block_idx_x].numCoeff - chroma_AC_residual[chromaIdx][block_idx_y][block_idx_x].trailingOnes;
+                        int levelCnt = chroma_AC_residual[chromaIdx][block_idx_y][block_idx_x].numCoeff -
+                                       chroma_AC_residual[chromaIdx][block_idx_y][block_idx_x].trailingOnes;
                         if (levelCnt) {
                             g_traceFile << "\tlevels: ";
                             for (int idx = 0; idx < levelCnt; idx++) {
-                                g_traceFile << to_string(chroma_AC_residual[chromaIdx][block_idx_y][block_idx_x].levels[idx]) << " ";
+                                g_traceFile
+                                    << to_string(chroma_AC_residual[chromaIdx][block_idx_y][block_idx_x].levels[idx])
+                                    << " ";
                             }
                             g_traceFile << endl;
                         }
@@ -295,7 +308,8 @@ void CResidual::Dump_residual_luma16x16_DC() {
     if (luma_residual16x16_DC.emptyBlock == true) {
         g_traceFile << "Empty." << endl;
     } else {
-        g_traceFile << "numCoeff: " << to_string(luma_residual16x16_DC.numCoeff) << "\ttrailingOnes: " << to_string(luma_residual16x16_DC.trailingOnes) << endl;
+        g_traceFile << "numCoeff: " << to_string(luma_residual16x16_DC.numCoeff)
+                    << "\ttrailingOnes: " << to_string(luma_residual16x16_DC.trailingOnes) << endl;
         if (luma_residual16x16_DC.numCoeff != 0) {
             if (luma_residual16x16_DC.trailingOnes != 0) {
                 g_traceFile << "\ttrailingSign: ";
@@ -329,7 +343,8 @@ int CResidual::parse_luma_residual(int blockType, UINT8 cbp_luma) {
             // 16x16 -> 4 * 8x8
             if (!m_macroblock_belongs->Get_pps_active()->Get_entropy_coding_flag()) {
                 // CAVLC
-                for (block_sub_column_idc = block_column; block_sub_column_idc < block_column + 2; block_sub_column_idc++) {
+                for (block_sub_column_idc = block_column; block_sub_column_idc < block_column + 2;
+                     block_sub_column_idc++) {
                     for (block_sub_row_idc = block_row; block_sub_row_idc < block_row + 2; block_sub_row_idc++) {
                         // 8x8 -> 4 * 4x4
                         idx8x8 = 2 * (block_column / 2) + block_row / 2;
@@ -827,7 +842,8 @@ int CResidual::get_total_zeros_chromaDC(UINT8 &totalZeros, int totalZeros_vlcIdx
     return kPARSING_ERROR_NO_ERROR;
 }
 
-int CResidual::search_for_value_in_2D_table(UINT8 &value1, UINT8 &value2, int &code, int *lengthTable, int *codeTable, int tableWidth, int tableHeight) {
+int CResidual::search_for_value_in_2D_table(UINT8 &value1, UINT8 &value2, int &code, int *lengthTable, int *codeTable,
+                                            int tableWidth, int tableHeight) {
     int err = 0;
     int codeLen = 0;
     for (int yIdx = 0; yIdx < tableHeight; yIdx++) {
